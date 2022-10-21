@@ -1,0 +1,84 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/" class="text-dark">Home</a></li>
+    <li class="breadcrumb-item"><a href="/users" class="text-dark">Users</a></li>
+    <li class="breadcrumb-item active text-dark"  aria-current="page">Add</li>
+  </ol>
+<h1 class="text-center">Add User</h1>
+
+<div class="container">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-10 col-md-8 col-lg-6">
+            <!-- Form -->
+            <form #userForm="ngForm" *ngIf="!submitted" (ngSubmit)="addUser(userForm)" novalidate>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>Name</label>
+                      <input type="text" class="form-control" name="name" placeholder="Name" [(ngModel)]="userModel.name" required>
+                    </div>
+                    <br/>
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Email</label>
+                    <input type="email" class="form-control" name="email" placeholder="Email" [(ngModel)]="userModel.email" required>
+                  </div>
+                  <br/>
+                  Gender
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" value="male" name="gender"  [(ngModel)]="userModel.gender" checked>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      Male
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" value="female"  [(ngModel)]="userModel.gender" name="gender">
+                    <label class="form-check-label" for="flexRadioDefault1" >
+                      Female
+                    </label>
+                  </div>
+
+                  <br/>
+
+                  <div class="form-group col-md-6">
+                    <label>DOB</label>
+                    <input type="date" class="form-control" max="2022-10-21" name="dob"  #name="ngModel" [(ngModel)]="userModel.dob" required>
+                  </div>
+
+                  <br/>
+
+                  <div class="form-group col-md-6">
+                    <label>Address</label>
+                    <input class="form-control" name="address" placeholder="Address" #name="ngModel" [(ngModel)]="userModel.address" required>
+                  </div>
+
+                  <br/>
+
+                  <div class="form-group col-md-6">
+                    <label>Contact</label>
+                    <input type="number" #contact="ngModel" class="form-control" pattern="^\d{10}$" [(ngModel)]="userModel.contact" [class.is-invalid]="contact.invalid && contact.touched" class="form-control" name="contact" placeholder="Contact" required>
+                    <div *ngIf="contact.errors && (contact.invalid || contact.touched)">
+                      <small class="text-danger" *ngIf="contact.errors['required']">Phone number is required</small>
+                      <small class="text-danger" *ngIf="contact.errors['pattern']">Phone number must be 10 digit</small>
+                    </div>
+                 
+                  </div>                  
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-dark" [disabled]="userForm.form.invalid">Add User</button>
+              </form>
+            <!-- Form end -->
+
+            <div class="alert alert-success" role="alert" *ngIf="submitted">
+              User Created Successfully
+              <br/>
+             <a href="/users"> Click To View Users </a>
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="errMsg">
+              {{ errMsg }}
+              <br/>
+             <a href="/users"> Click To View Users </a>
+            </div>
+            <br/>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">LMS</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link active" href="/" *ngIf="userLogin">Darshboard</a>
+        <a class="nav-link active" href="/" *ngIf="!userLogin">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/users" *ngIf="userLogin">Users</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/books">Books</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/issuebooks" *ngIf="userLogin">Issue Books</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="/returnbooks">Return Books</a>
+      </li> -->
+    </ul>
+
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <div *ngIf="userLogin; then thenBlock; else elseBlock"></div>
+      </li>
+   </ul>
+    <ng-template #thenBlock>
+      <a class="nav-link btn btn-light text-dark" style="margin-right: 20px;" href="/logout" *ngIf="userLogin">Logout</a>
+    </ng-template>
+
+    
+    <ng-template #elseBlock>
+      <a class="nav-link btn btn-light text-dark" style="margin-right: 20px;" href="/login" *ngIf="!userLogin">Login</a>
+    </ng-template>
+
+
+  </div>
+</nav>
+<router-outlet></router-outlet>
+<footer> 
+  <div
+  class="d-flex flex-column flex-md-row text-center text-md-start justify-content-center py-4 px-4 px-xl-5 bg-dark">
+  <!-- Copyright -->
+  <div class="text-white mb-3 mb-md-0">
+    Copyright © 2022. All rights reserved.
+  </div>
+  <div class="text-white mb-3 mb-md-0">
+    &nbsp;Made with <i class="fa fa-heart pulse text-danger"></i> By <i><a href="/">Lms</a></i>
+  </div>
+  <!-- Copyright -->
+</div>
+</footer>
+

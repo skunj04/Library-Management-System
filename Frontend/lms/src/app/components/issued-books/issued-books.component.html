@@ -1,0 +1,43 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/" class="text-dark">Home</a></li>
+    <li class="breadcrumb-item"><a href="/issuebooks" class="text-dark">Issued Books</a></li>
+    <li class="breadcrumb-item active text-dark"  aria-current="page">View</li>
+  </ol>
+  
+<h2 class="text-center">Issued Books <span><a href="/addIssueBook" class="btn btn-dark" style="right: 0px;">+</a></span></h2>
+<table class="table table-hover table-dark">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Book Name</th>
+        <th scope="col">ISBN</th>
+        <th scope="col">Returned</th>
+        <th scope="col">Returned Date</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let issuedBook of issuedBooks; index as i">
+            <th scope="row">{{ i+1 }}</th>
+            <td>{{ issuedBook.name }}</td>
+            <td>{{ issuedBook.email }}</td>
+            <td>{{ issuedBook.bookname }}</td>
+            <td>{{ issuedBook.isbn }}</td>
+
+            <td>
+                <div *ngIf="issuedBook.isReturned; then thenBlock; else elseBlock" scope="col"></div>
+            </td>
+            <ng-template #thenBlock>
+                <p class="text-success">Yes</p>
+            </ng-template>
+
+            <ng-template #elseBlock>
+                <!-- <p class="text-danger">No</p> -->
+                <button class="btn btn-light" (click)="returnBook(issuedBook.id,issuedBook.email,issuedBook.isbn)">Return Now</button>
+            </ng-template>
+            <td>{{ issuedBook.returnDate }}</td>
+        </tr>
+    </tbody>
+  </table>

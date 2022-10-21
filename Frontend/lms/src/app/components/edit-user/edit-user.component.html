@@ -1,0 +1,88 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/" class="text-dark">Home</a></li>
+    <li class="breadcrumb-item"><a href="/users" class="text-dark">Users</a></li>
+    <li class="breadcrumb-item active text-dark"  aria-current="page">Edit</li>
+  </ol>
+<h1 class="text-center">Edit User</h1>
+
+<div class="container">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-10 col-md-8 col-lg-6">
+            <!-- Form -->
+            <form #userForm="ngForm" *ngIf="!submitted" (ngSubmit)="editUser(userForm)" novalidate>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>Name</label>
+                      <input type="text" class="form-control" name="name" placeholder="Name" [(ngModel)]="userModel.name" required>
+                    </div>
+                    <br/>
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Email</label>
+                    <input type="email" class="form-control" name="email" placeholder="Email" [(ngModel)]="userModel.email" readonly required>
+                  </div>
+                  <br/>
+                  Gender
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" value="male" name="gender"  [(ngModel)]="userModel.gender" checked>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      Male
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" value="female"  [(ngModel)]="userModel.gender" name="gender">
+                    <label class="form-check-label" for="flexRadioDefault1" >
+                      Female
+                    </label>
+                  </div>
+
+                  <br/>
+
+                  <div class="form-group col-md-6">
+                    <label>DOB</label>
+                    <input type="date" class="form-control" max="2022-10-17" name="dob"  #name="ngModel" [(ngModel)]="userModel.dob" required>
+                  </div>
+
+                  <br/>
+
+                  <div class="form-group col-md-6">
+                    <label>Address</label>
+                    <input class="form-control" name="address" placeholder="Address" #name="ngModel" [(ngModel)]="userModel.address" required>
+                  </div>
+
+                  <br/>
+
+                  <div class="form-group col-md-6">
+                    <label>Contact</label>
+                    <input type="number" class="form-control" name="contact" placeholder="Contact" #name="ngModel" [(ngModel)]="userModel.contact" required>
+                  </div>                  
+                </div>
+                <br/>
+                Activate
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" value="true" name="active"  [(ngModel)]="userModel.active" checked>
+                  <label class="form-check-label" >
+                    Yes
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" value="false"  [(ngModel)]="userModel.active" name="active">
+                  <label class="form-check-label" >
+                    No
+                  </label>
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-dark" [disabled]="userForm.form.invalid">Edit User</button>
+              </form>
+            <!-- Form end -->
+
+            <div class="alert alert-success" role="alert" *ngIf="submitted">
+              User Updated Successfully
+              <br/>
+             <a href="/users"> Click To View Users </a>
+            </div>
+            <br/>
+        </div>
+    </div>
+</div>
+
+

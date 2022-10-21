@@ -1,0 +1,39 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/" class="text-dark">Home</a></li>
+    <li class="breadcrumb-item"><a href="/issuebooks" class="text-dark">Issue Books</a></li>
+    <li class="breadcrumb-item active text-dark"  aria-current="page">Add</li>
+</ol>
+<h2 class="text-center">Issue Books</h2>
+
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-10 col-md-8 col-lg-6">
+            <!-- Form -->
+            <form class="vh-100" #userForm="ngForm" *ngIf="!submitted" (ngSubmit)="issueBook(userForm.value)" novalidate>
+                <div class="form-group">
+                    <label>Select User</label>
+                    <select class="form-control" [(ngModel)]="users" name="email"  required>
+                        <option *ngFor="let user of users" [value]="user.email">{{user.name}} | {{ user.email }}</option>
+                    </select> 
+                </div>
+                
+                <div class="form-group">
+                    <label>Select Book</label>
+                    <select class="form-control" [(ngModel)]="books" name="isbn" required>
+                        <option *ngFor="let book of books" [value]="book.isbn">{{book.name}} | {{ book.isbn}}</option>
+                    </select>
+                </div> 
+                <br/>
+                <button type="submit" class="btn btn-dark">Issue Book</button>   
+            </form>
+            <!-- Form end -->
+            <div class="alert alert-success" role="alert" *ngIf="submitted">
+                Book Issued Successfully
+                <br/>
+               <a href="/issuebooks"> Click To View Issued Book </a>
+              </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,56 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/" class="text-dark">Home</a></li>
+    <li class="breadcrumb-item"><a href="/books" class="text-dark">Books</a></li>
+    <li class="breadcrumb-item active text-dark"  aria-current="page">Edit</li>
+  </ol>
+<h1 class="text-center">Update Book</h1>
+
+<div class="container">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-10 col-md-8 col-lg-6">
+            <!-- Form -->
+            <form #userForm="ngForm" *ngIf="!submitted" (ngSubmit)="editBook(userForm)" novalidate>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>ISBN</label>
+                      <input type="number" class="form-control" name="isbn" placeholder="ISBN" [(ngModel)]="bookModel.isbn" readonly required>
+                    </div>
+                    <br/>
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Name</label>
+                    <input type="text" class="form-control" name="name" placeholder="Name" [(ngModel)]="bookModel.name" required>
+                  </div>
+                  <br/>
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Description</label>
+                    <input type="text" class="form-control" name="description" placeholder="Description" [(ngModel)]="bookModel.description" required>
+                  </div>
+                  <br/>
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Author Name</label>
+                    <input type="text" class="form-control" name="authorName" placeholder="Author Name" [(ngModel)]="bookModel.authorName" required>
+                  </div>
+                  <br/>
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Category</label>
+                    <input type="text" class="form-control" name="category" placeholder="Category" [(ngModel)]="bookModel.category" required>
+                  </div>
+                  <br/>
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Quantity</label>
+                    <input type="number" class="form-control" name="quantity" placeholder="Quantity" [(ngModel)]="bookModel.quantity" required>
+                  </div>
+                  <br/>
+                  </div>
+                <button type="submit" class="btn btn-dark"  [disabled]="userForm.form.invalid">Update Book</button>
+              </form>
+            <!-- Form end -->
+            <div class="alert alert-success" role="alert" *ngIf="submitted">
+              Book Added Successfully
+              <br/>
+             <a href="/books"> Click To View Book </a>
+            </div>
+            <br/>
+        </div>
+    </div>
+</div>
